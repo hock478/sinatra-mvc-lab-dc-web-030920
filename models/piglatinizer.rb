@@ -1,5 +1,5 @@
 
-class PigLatinizer 
+class PigLatinizer
     attr_reader :text
 
     def initialize(text)
@@ -8,6 +8,7 @@ class PigLatinizer
 
     def piglatinizer
         sentence = @text.split(" ")
+        sentence_changed = sentence
         vowels = ["a", "e", "i", "o", "u", "y"]
         x = 0
         while x < sentence.length do
@@ -21,11 +22,15 @@ class PigLatinizer
             end
             x += 1
         end
-        sentence = sentence.map{|sentence| sentence += "ay"}
-        sentence.join(" ")
+        sentence_changed = sentence.map{|sentence| 
+        if vowels.include?(sentence[0])
+            sentence += "way"
+        else
+            sentence += "ay"
+        end
+        }
+        sentence_changed.join(" ")
     end
    
 end
 
-pl = PigLatinizer.new("orangebud blama")
-pl.piglatinizer

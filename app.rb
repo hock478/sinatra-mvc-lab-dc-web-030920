@@ -2,13 +2,13 @@ require_relative 'config/environment'
 
 class App < Sinatra::Base
 
-    get '/index' do
+    get '/' do
         erb :user_input
     end
 
-    post '/index' do
-        word = params[:word]
-        @pig = PigLatinizer.new(word)
+    post '/' do
+        word = params[:words]
+        @words = PigLatinizer.new(word)
         erb :show
     end
 
